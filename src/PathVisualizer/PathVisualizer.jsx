@@ -44,12 +44,21 @@ export default class PathVisualizer extends Component {
           return (
             <div key={rowId}>
               {row.map((node, nodeId) => {
-                const { isStart, isFinish } = node;
+                const {
+                  isStart,
+                  isFinish,
+                  distance,
+                  isVisited,
+                  previousNode,
+                } = node;
                 return (
                   <Node>
                     key={nodeId}
                     isStart={isStart}
                     isFinish={isFinish}
+                    distance={distance}
+                    isVisited={isVisited}
+                    previousNode={previousNode}
                   </Node>
                 );
               })}
