@@ -23,6 +23,9 @@ export default class PathVisualizer extends Component {
           col,
           isStart: row === 10 && col === 5,
           isFinish: row === 10 && col === 45,
+          distance: Infinity,
+          isVisited: false,
+          previousNode: null,
         };
         currentRow.push(currentNode);
       }
