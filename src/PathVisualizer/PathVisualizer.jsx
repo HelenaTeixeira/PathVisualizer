@@ -1,7 +1,13 @@
 import React, { Component } from "react";
 import Node from "./Node/Node";
+import {dijkstra, getNodesInOrder} from '../Algorithms/dijkstra'
 
 import "./PathVisualizer.css";
+
+const START_ROW= 10;
+const STAT_COL=15;
+const END_ROW= 10;
+const END_COL=35;
 
 export default class PathVisualizer extends Component {
   constructor(props) {
@@ -12,26 +18,8 @@ export default class PathVisualizer extends Component {
   }
 
   componentDidMount() {
-    const nodes = [];
-    for (let row = 0; row < 20; row++) {
-      //creates grid
-      const currentRow = [];
-      for (let col = 0; col < 50; col++) {
-        const currentNode = {
-          //object node
-          row,
-          col,
-          isStart: row === 10 && col === 5,
-          isFinish: row === 10 && col === 45,
-          distance: Infinity,
-          isVisited: false,
-          previousNode: null,
-        };
-        currentRow.push(currentNode);
-      }
-      nodes.push(currentRow);
-    }
-    this.setState({ nodes });
+    const nodes = makeInitialGrid();
+    this.setState({nodes});
   }
 
   render() {
@@ -52,14 +40,14 @@ export default class PathVisualizer extends Component {
                   previousNode,
                 } = node;
                 return (
-                  <Node>
+                  <Node
                     key={nodeId}
                     isStart={isStart}
                     isFinish={isFinish}
                     distance={distance}
                     isVisited={isVisited}
                     previousNode={previousNode}
-                  </Node>
+                  ></Node>
                 );
               })}
             </div>
@@ -69,3 +57,28 @@ export default class PathVisualizer extends Component {
     );
   }
 }
+
+const makeInitialGrid= () => {
+  const nodes = [];
+  for (let row = 0; row < 20; row++) {
+    //creates grid
+    const currentRow = [];
+    for (let col = 0; col < 50; col++) {
+      currentRow.push(createNode(col,row));
+    }
+    nodes.push(currentRow);
+  }
+  return nodes;
+}
+
+const createNode =(col,row) =>{
+  return{
+    col,
+    row,
+    isStart: row === START_ROW && col === STAT_COL,
+    isFinish: row === END_ROW && col === END_COL,
+    distance: Infinity,
+    isVisited: false,
+    previousNode: null,
+  };
+};

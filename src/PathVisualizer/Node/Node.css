@@ -6,9 +6,15 @@
 }
 
 .node-finish {
+  width: 25px;
+  height: 25px;
   background-color: red;
+  display: inline-block;
 }
 
 .node-start {
+  width: 25px;
+  height: 25px;
   background-color: green;
+  display: inline-block;
 }
