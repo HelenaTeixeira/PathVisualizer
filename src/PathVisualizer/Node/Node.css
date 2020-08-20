@@ -18,3 +18,10 @@
   background-color: green;
   display: inline-block;
 }
+
+.node-visited {
+  width: 25px;
+  height: 25px;
+  background-color:blueviolet;
+  display: inline-block;
+}

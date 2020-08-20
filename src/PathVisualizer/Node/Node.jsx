@@ -8,7 +8,7 @@ export default class Node extends Component {
   }
 
   render() {
-    const { isStart, isFinish } = this.props;
+    const { isStart, isFinish, isVisited } = this.props;
     /*const extraClassName = isFinish
       ? "node-finish"
       : isStart
@@ -20,6 +20,8 @@ export default class Node extends Component {
       extraClassName = "node-finish";
     } else if (isStart) {
       extraClassName = "node-start";
+    }else if(isVisited){
+      extraClassName= "node-visited";
     } else {
       extraClassName = "node";
     }

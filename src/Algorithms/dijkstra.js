@@ -1,4 +1,4 @@
-function dijkstra(grid, startNode, endNode) {
+export function dijkstra(grid, startNode, endNode) {
   const visitedNodes = [];
   startNode.distance = 0;
   const unvisitedNodes = getGridNodes(grid);
@@ -34,7 +34,7 @@ function sortNodesByDistance(unvisitedNodes) {
 function updateUnvisitedNeighbors(node, grid){
   const unvisitedNeighbors= getUnvisitedNeighbors(node,grid);
   for (const neighbor of unvisitedNeighbors){
-    neighbor.distance= node.distance-1;
+    neighbor.distance= node.distance+1;
     neighbor.previousNode=node;
   }
 }
